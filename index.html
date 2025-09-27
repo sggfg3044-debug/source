@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SkibidiRAT — Community</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0b;
+    --card:#0f0f10;
+    --accent:#ff7a00; /* orange */
+    --muted:#9aa0a6;
+    --glass: rgba(255,255,255,0.03);
+    --accent-2: #ffb37a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background: linear-gradient(180deg,#060606 0%, #0b0b0b 100%);
+    color:#e8e8e8; -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    min-height:100vh;
+  }
+
+  /* Header */
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px; gap:16px;
+    border-bottom:1px solid rgba(255,255,255,0.03);
+    position:sticky;top:0;background:linear-gradient(90deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+    backdrop-filter: blur(6px); z-index:10;
+  }
+  .logo{display:flex;gap:12px;align-items:center}
+  .logo-badge{
+    width:44px;height:44px;border-radius:8px;
+    background: linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:#091015;
+    box-shadow: 0 4px 18px rgba(255,122,0,0.12), inset 0 -6px 18px rgba(0,0,0,0.15);
+    font-size:16px;
+  }
+  .logo h1{margin:0;font-size:18px}
+  .nav-actions{display:flex;gap:12px;align-items:center}
+  .btn{
+    background:transparent;border:1px solid rgba(255,255,255,0.06); color:var(--accent);
+    padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;
+  }
+  .btn.primary{
+    background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#091015;border:0;
+    box-shadow:0 8px 30px rgba(255,122,0,0.12);
+  }
+
+  /* Layout */
+  .container{max-width:1100px;margin:28px auto;padding:0 20px;display:grid;grid-template-columns: 1fr 360px; gap:24px}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+  }
+
+  /* Threads */
+  .threads .thread{display:flex;gap:14px;padding:14px;border-radius:10px;margin-bottom:12px;background:var(--card);align-items:flex-start}
+  .thread .avatar{width:52px;height:52px;border-radius:10px;background:linear-gradient(180deg,#111 #050505);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700}
+  .thread .meta{flex:1}
+  .thread .meta h3{margin:0;font-size:16px}
+  .thread .meta p{margin:6px 0 0;color:var(--muted);font-size:13px}
+  .thread .tags{display:flex;gap:8px;margin-top:8px}
+  .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,122,0,0.08);color:var(--accent);border:1px solid rgba(255,122,0,0.05)}
+  .thread .right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+
+  /* Sidebar */
+  .sidebar .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .workers{display:flex;flex-direction:column;gap:10px}
+  .worker{display:flex;gap:10px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.01)}
+  .worker .dot{width:12px;height:12px;border-radius:6px;background:var(--accent);box-shadow:0 4px 10px rgba(255,122,0,0.12)}
+  .faq .q{padding:12px;border-radius:8px;margin-bottom:8px;background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
+  .faq .a{padding:10px 12px;margin-bottom:8px;color:var(--muted);font-size:14px}
+
+  /* Footer */
+  .footer{margin:28px auto 60px;max-width:1100px;padding:10px 20px;color:var(--muted);text-align:center}
+
+  /* Tab styling */
+  .tabs {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .tab {
+    padding: 10px 16px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .tab.active {
+    background: var(--accent);
+    color: #091015;
+  }
+
+  /* Responsive */
+  @media (max-width:980px){
+    .container{grid-template-columns:1fr; padding:0 12px}
+    .nav{padding:12px}
+  }
+
+  /* small helpers */
+  .muted{color:var(--muted);font-size:13px}
+  .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="logo">
+    <div class="logo-badge">SR</div>
+    <div>
+      <h1>SkibidiRAT Community</h1>
+    </div>
+  </div>
+
+  <div class="nav-actions">
+    <div id="userArea">
+      <button class="btn" id="btnLogin">Войти</button>
+      <button class="btn primary" id="btnRegister">Регистрация</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tabs">
+    <div class="tab active" id="tabHome">Главная</div>
+    <div class="tab" id="tabForum">Форум</div>
+  </div>
+
+  <section id="homeSection" class="card">
+    <h2>Добро пожаловать на SkibidiRAT Community</h2>
+    <p>Здесь вы можете узнать больше о нашем проекте, ознакомиться с последними новостями и многое другое.</p>
+  </section>
+
+  <section id="forumSection" class="card" style="display:none;">
+    <h2>Форум</h2>
+    <div class="threads">
+      <div class="thread">
+        <div class="avatar">A</div>
+        <div class="meta">
+          <h3>Обсуждение SkibidiRAT</h3>
+          <p>Очень интересная тема, которая привлекает внимание многих пользователей!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="muted">© 2025 SkibidiRAT. Все права защищены.</div>
+</footer>
+
+<!-- Modal for Login and Registration -->
+<div id="authModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0, 0, 0, 0.7); display:flex; justify-content:center; align-items:center;">
+  <div class="card" style="width: 400px; padding: 24px;">
+    <h3 id="authModalTitle">Войти</h3>
+    <form id="authForm">
+      <div>
+        <label for="email">Электронная почта</label>
+        <input type="email" id="email" name="email" required placeholder="Введите вашу почту" style="width:100%; padding: 10px; margin-top: 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+      </div>
+      <div style="margin-top:16px;">
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" required placeholder="Введите ваш пароль" style="width:100%; padding: 10px; margin-top: 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+      </div>
+      <button type="submit" class="btn primary" style="margin-top:20px;width:100%;">Отправить</button>
+      <button type="button" class="btn" id="btnCloseModal" style="margin-top:12px;width:100%;">Закрыть</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  let usersDatabase = [
+    { email: 'user@example.com', password: 'password123' } // Example user for login
+  ];
+
+  // Open modal for login/register
+  document.getElementById('btnLogin').addEventListener('click', function() {
+    openAuthModal('login');
+  });
+
+  document.getElementById('btnRegister').addEventListener('click', function() {
+    openAuthModal('register');
+  });
+
+  document.getElementById('btnCloseModal').addEventListener('click', function() {
+    closeAuthModal();
+  });
+
+  function openAuthModal(mode) {
+    const modal = document.getElementById('authModal');
+    document.getElementById('authModalTitle').textContent = mode === 'login' ? 'Войти' : 'Регистрация';
+    modal.style.display = 'flex';
+    document.getElementById('authForm').onsubmit = (event) => handleAuthSubmit(event, mode);
+  }
+
+  function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+  }
+
+  function handleAuthSubmit(event, mode) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    if (mode === 'login') {
+      const user = usersDatabase.find(u => u.email === email && u.password === password);
+      if (user) {
+        alert('Успешный вход!');
+        closeAuthModal();
+      } else {
+        alert('Неверная почта или пароль!');
+      }
+    } else if (mode === 'register') {
+      if (usersDatabase.some(u => u.email === email)) {
+        alert('Почта уже зарегистрирована!');
+      } else {
+        usersDatabase.push({ email, password });
+        alert('Регистрация прошла успешно!');
+        closeAuthModal();
+      }
+    }
+  }
+
+  // Switch tabs
+  const tabHome = document.getElementById('tabHome');
+  const tabForum = document.getElementById('tabForum');
+  const homeSection = document.getElementById('homeSection');
+  const forumSection = document.getElementById('forumSection');
+
+  tabHome.addEventListener('click', () => {
+    tabHome.classList.add('active');
+    tabForum.classList.remove('active');
+    homeSection.style.display = 'block';
+    forumSection.style.display = 'none';
+  });
+
+  tabForum.addEventListener('click', () => {
+    tabForum.classList.add('active');
+    tabHome.classList.remove('active');
+    homeSection.style.display = 'none';
+    forumSection.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
